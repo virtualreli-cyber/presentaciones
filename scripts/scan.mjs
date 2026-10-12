@@ -152,33 +152,66 @@ export async function scanCurriculum() {
     if (fs.existsSync(cursoPath)) {
       const entries = fs.readdirSync(cursoPath, { withFileTypes: true });
       for (const entry of entries) {
+        const foundFiles = [];
+
         if (entry.isDirectory()) {
-          const temaSlug = entry.name;
-          const slidesFile = path.join(cursoPath, temaSlug, 'slides.md');
+          const temaDir = path.join(cursoPath, entry.name);
+          const dirFiles = fs.readdirSync(temaDir);
+          // Obtener todos los archivos .md (excluyendo README)
+          const mdFiles = dirFiles.filter(f => f.endsWith('.md') && !f.toLowerCase().startsWith('readme'));
 
-          if (fs.existsSync(slidesFile)) {
-            const parsed = await parseSlidesWithSlidev(slidesFile);
-            const temaMatch = temaSlug.match(/tema-(\d+)/i);
-            const numTema = temaMatch ? parseInt(temaMatch[1], 10) : 1;
+          for (const file of mdFiles) {
+            const fileSlug = file.replace(/\.md$/i, '');
+            // Si solo hay un archivo .md en la carpeta, el slug es el nombre de la carpeta (ej. tema-01)
+            // Si hay varios, se combinan para que cada presentación tenga su ID y tarjeta única
+            const slug = mdFiles.length === 1
+              ? entry.name
+              : (file.toLowerCase() === 'slides.md' ? entry.name : `${entry.name}-${fileSlug}`);
 
-            const fileContent = fs.readFileSync(slidesFile, 'utf8');
-            const h1Match = fileContent.match(/<h1[^>]*>([\s\S]*?)<\/h1>/i);
-            const tituloH1 = h1Match ? h1Match[1].replace(/<[^>]+>/g, '').trim() : `Tema ${numTema}`;
-
-            temas.push({
-              id: `${cursoConfig.id}-${temaSlug}`,
-              slug: temaSlug,
-              numeroTema: numTema,
-              titulo: tituloH1,
-              rutaRelativa: path.relative(process.cwd(), slidesFile),
-              deckBase: `decks/${cursoConfig.id}-${temaSlug}/`,
-              deckUrl: `decks/${cursoConfig.id}-${temaSlug}/index.html`,
-              totalSlides: parsed.totalSlides,
-              separatorSlide: parsed.separatorSlide,
-              castellano: parsed.castellano,
-              valenciano: parsed.valenciano
+            foundFiles.push({
+              filePath: path.join(temaDir, file),
+              slug,
+              fileName: file
             });
           }
+        } else if (entry.isFile() && entry.name.endsWith('.md') && !entry.name.toLowerCase().startsWith('readme')) {
+          const fileSlug = entry.name.replace(/\.md$/i, '');
+          foundFiles.push({
+            filePath: path.join(cursoPath, entry.name),
+            slug: fileSlug,
+            fileName: entry.name
+          });
+        }
+
+        for (const item of foundFiles) {
+          const slidesFile = item.filePath;
+          const temaSlug = item.slug;
+          const parsed = await parseSlidesWithSlidev(slidesFile);
+
+          const temaMatch = temaSlug.match(/tema-(\d+)/i) || item.fileName.match(/tema-(\d+)/i) || item.fileName.match(/^(\d+)/);
+          const numTema = temaMatch ? parseInt(temaMatch[1], 10) : 1;
+
+          const fileContent = fs.readFileSync(slidesFile, 'utf8');
+          const h1Match = fileContent.match(/<h1[^>]*>([\s\S]*?)<\/h1>/i);
+          let tituloH1 = h1Match ? h1Match[1].replace(/<[^>]+>/g, '').trim() : '';
+          if (!tituloH1) {
+            const mdH1 = fileContent.match(/^#\s+(.+)$/m);
+            tituloH1 = mdH1 ? mdH1[1].trim() : item.slug.replace(/[-_]/g, ' ');
+          }
+
+          temas.push({
+            id: `${cursoConfig.id}-${temaSlug}`,
+            slug: temaSlug,
+            numeroTema: numTema,
+            titulo: tituloH1,
+            rutaRelativa: path.relative(process.cwd(), slidesFile),
+            deckBase: `decks/${cursoConfig.id}-${temaSlug}/`,
+            deckUrl: `decks/${cursoConfig.id}-${temaSlug}/index.html`,
+            totalSlides: parsed.totalSlides,
+            separatorSlide: parsed.separatorSlide,
+            castellano: parsed.castellano,
+            valenciano: parsed.valenciano
+          });
         }
       }
     }

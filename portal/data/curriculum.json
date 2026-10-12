@@ -86,34 +86,20 @@
         "id": "2eso-tema-01",
         "slug": "tema-01",
         "numeroTema": 1,
-        "titulo": "Los Siete Sacramentos",
-        "rutaRelativa": "presentaciones/2eso/tema-01/slides.md",
+        "titulo": "Materia, Signo y Gracia",
+        "rutaRelativa": "presentaciones/2eso/tema-01/P - 2E - CV - Sacramentos.md",
         "deckBase": "decks/2eso-tema-01/",
         "deckUrl": "decks/2eso-tema-01/index.html",
-        "totalSlides": 19,
-        "separatorSlide": 10,
+        "totalSlides": 15,
+        "separatorSlide": 8,
         "castellano": {
           "sessions": [
             {
               "num": 1,
               "tipo": "sesion",
               "titulo": "Sesión 1",
-              "subtitulo": "Materia, Signo y Gracia: ¿Qué es un Sacramento y cómo transforma nuestra existencia?",
+              "subtitulo": "¿Qué es un Sacramento? Signos sensibles de la presencia de Dios",
               "slideNumber": 1
-            },
-            {
-              "num": 2,
-              "tipo": "sesion",
-              "titulo": "Sesión 2",
-              "subtitulo": "Los Sacramentos en el Camino de la Vida: Iniciación, Curación y Servicio al Reino",
-              "slideNumber": 4
-            },
-            {
-              "num": 99,
-              "tipo": "proyecto",
-              "titulo": "Proyecto Final",
-              "subtitulo": "Guía Multimedia «Rutas del Signo Sagrado en Nuestra Comunidad»",
-              "slideNumber": 6
             }
           ],
           "startSlide": 1
@@ -124,25 +110,11 @@
               "num": 1,
               "tipo": "sesion",
               "titulo": "Sessió 1",
-              "subtitulo": "Matèria, Signe i Gràcia: Què és un Sagrament i com transforma la nostra existència?",
-              "slideNumber": 11
-            },
-            {
-              "num": 2,
-              "tipo": "sesion",
-              "titulo": "Sessió 2",
-              "subtitulo": "Els Sagraments en el Camí de la Vida: Iniciació, Curació i Servici al Regne",
-              "slideNumber": 14
-            },
-            {
-              "num": 99,
-              "tipo": "proyecto",
-              "titulo": "Projecte Final",
-              "subtitulo": "Guia Multimèdia «Rutes del Signe Sagrat a la Nostra Comunitat»",
-              "slideNumber": 16
+              "subtitulo": "Què és un Sagrament? Signes sensibles de la presència de Déu",
+              "slideNumber": 9
             }
           ],
-          "startSlide": 11
+          "startSlide": 9
         }
       }
     ]
