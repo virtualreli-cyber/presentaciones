@@ -1,7 +1,7 @@
 ---
 theme: default
 layout: default
-title: "Los Siete Sacramentos - Sesión 1"
+title: "Los SACRAMENTOS"
 info: "Unidad Didáctica de Religión Católica - 2º de ESO"
 class: "text-slate-800 bg-white"
 highlighter: shiki
@@ -30,7 +30,7 @@ ul > li::before, li::before {
 </div>
 <div class="my-auto">
 <h1 class="!text-5xl font-extrabold tracking-tight text-[#ea580c] mb-3">
-Los Siete Sacramentos
+Materia, forma y gracia
 </h1>
 <div class="text-xl font-bold text-slate-700 mb-2">
 Sesión 1
@@ -444,7 +444,7 @@ Diapositiva de transició visual de llengua per a centres plurilingües.
 </div>
 <div class="my-auto">
 <h1 class="!text-5xl font-extrabold tracking-tight text-[#ea580c] mb-3">
-Els Set Sagraments
+Matèria y misteri
 </h1>
 <div class="text-xl font-bold text-slate-700 mb-2">
 Sessió 1
