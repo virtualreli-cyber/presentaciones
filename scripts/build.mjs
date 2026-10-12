@@ -29,6 +29,8 @@ fs.mkdirSync(distDir, { recursive: true });
 // 4. Copiar portal a dist
 console.log('📦 Copiando aplicación web del portal a dist/...');
 fs.cpSync(path.resolve('portal'), distDir, { recursive: true });
+// Asegurar que GitHub Pages no use Jekyll para procesar assets
+fs.writeFileSync(path.join(distDir, '.nojekyll'), '', 'utf8');
 
 // 5. Localizar binario de slidev
 let slidevBin = 'npx slidev';
@@ -42,10 +44,17 @@ if (fs.existsSync(path.resolve('node_modules/.bin/slidev'))) {
 const allTemas = curriculum.flatMap(c => c.temas);
 console.log(`\n📚 Compilando ${allTemas.length} presentaciones con Slidev:`);
 
+// En GitHub Pages, el sitio se aloja en /<nombre-repo>/ (ej: /presentaciones/)
+const repoName = process.env.GITHUB_REPOSITORY ? process.env.GITHUB_REPOSITORY.split('/')[1] : '';
+const basePrefix = process.env.BASE_PREFIX || (repoName ? `/${repoName}` : '');
+if (basePrefix) {
+  console.log(`ℹ️ Prefijo base detectado para subpath: ${basePrefix}`);
+}
+
 for (let i = 0; i < allTemas.length; i++) {
   const tema = allTemas[i];
   const deckOut = path.join(distDir, 'decks', tema.id);
-  const baseParam = `/decks/${tema.id}/`;
+  const baseParam = `${basePrefix}/decks/${tema.id}/`;
 
   console.log(`\n[${i + 1}/${allTemas.length}] Compilando: ${tema.id} (${tema.titulo})...`);
   const cmd = `"${slidevBin}" build "${tema.rutaRelativa}" --base "${baseParam}" --out "${deckOut}" --router-mode hash`;
@@ -61,3 +70,4 @@ for (let i = 0; i < allTemas.length; i++) {
 
 console.log('\n🎉 ¡Compilación completada con éxito!');
 console.log('📁 Carpeta dist/ lista para desplegar en Netlify o GitHub Pages.');
+
