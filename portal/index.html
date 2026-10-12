@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Presentaciones · Religión Católica</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Barra superior compacta unificada -->
+  <header class="topbar">
+    <div class="topbar-container">
+      <div class="brand">
+        <div class="brand-icon">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M11 2h2v7h7v2h-7v11h-2v-11h-7v-2h7v-7z"/>
+          </svg>
+        </div>
+        <span class="brand-title">Religión Católica</span>
+      </div>
+
+      <!-- Filtro de cursos -->
+      <nav class="course-tabs" id="courseTabs">
+        <!-- Renderizado dinámicamente -->
+      </nav>
+
+      <!-- Buscador discreto -->
+      <div class="search-box">
+        <svg class="search-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input type="text" id="searchInput" placeholder="Buscar..." autocomplete="off">
+        <button id="clearSearch" class="clear-btn" style="display: none;">✕</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Contenedor de temas -->
+  <main class="main-content">
+    <div id="loadingState" class="state-msg">
+      <div class="spinner"></div>
+    </div>
+
+    <div id="emptyState" class="state-msg" style="display: none;">
+      <p>No se encontraron presentaciones.</p>
+    </div>
+
+    <div id="decksGrid" class="decks-grid">
+      <!-- Tarjetas compactas generadas dinámicamente -->
+    </div>
+  </main>
+
+  <!-- Modal de Proyección -->
+  <div id="launchModal" class="modal-backdrop" style="display: none;">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <div>
+          <span class="modal-badge" id="modalCourseBadge">2º ESO</span>
+          <h2 class="modal-title" id="modalTitle">Título del Tema</h2>
+        </div>
+        <button class="modal-close-btn" id="modalCloseBtn" aria-label="Cerrar">✕</button>
+      </div>
+
+      <div class="modal-body">
+        <!-- Idioma -->
+        <div class="modal-section">
+          <span class="section-label">Idioma:</span>
+          <div class="lang-selector">
+            <button type="button" class="lang-btn active" data-lang="castellano" id="btnLangES">
+              <span class="lang-flag">🇪🇸</span>
+              <span>Castellano</span>
+            </button>
+            <button type="button" class="lang-btn" data-lang="valenciano" id="btnLangVAL">
+              <span class="lang-flag">🏛️</span>
+              <span>Valencià (AVL)</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Sesión de inicio -->
+        <div class="modal-section">
+          <span class="section-label">Comenzar en:</span>
+          <div class="sessions-list" id="sessionsSelector">
+            <!-- Rellenado dinámicamente -->
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn-cancel" id="btnCancelLaunch">Cancelar</button>
+        <button type="button" class="btn-launch-confirm" id="btnConfirmLaunch">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+          </svg>
+          <span>Proyectar</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

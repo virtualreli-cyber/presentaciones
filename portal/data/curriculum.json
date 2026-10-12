@@ -1,0 +1,372 @@
+[
+  {
+    "id": "1eso",
+    "nombre": "1º de ESO",
+    "etapa": "Educación Secundaria Obligatoria",
+    "orden": 1,
+    "color": "#f97316",
+    "icon": "🌱",
+    "totalTemas": 1,
+    "temas": [
+      {
+        "id": "1eso-tema-01",
+        "slug": "tema-01",
+        "numeroTema": 1,
+        "titulo": "La Creación y la Casa Común",
+        "rutaRelativa": "presentaciones/1eso/tema-01/slides.md",
+        "deckBase": "decks/1eso-tema-01/",
+        "deckUrl": "decks/1eso-tema-01/index.html",
+        "totalSlides": 19,
+        "separatorSlide": 10,
+        "castellano": {
+          "sessions": [
+            {
+              "num": 1,
+              "tipo": "sesion",
+              "titulo": "Sesión 1",
+              "subtitulo": "¿Casualidad o Don? El asombro ante la belleza del cosmos y el origen de la vida",
+              "slideNumber": 1
+            },
+            {
+              "num": 2,
+              "tipo": "sesion",
+              "titulo": "Sesión 2",
+              "subtitulo": "Custodios de la Tierra: La encíclica Laudato Si' y la ecología integral en nuestra vida diaria",
+              "slideNumber": 4
+            },
+            {
+              "num": 99,
+              "tipo": "proyecto",
+              "titulo": "Proyecto Final",
+              "subtitulo": "Campaña «Guardianes de la Creación: Nuestro Instituto Sostenible y Fraterno»",
+              "slideNumber": 6
+            }
+          ],
+          "startSlide": 1
+        },
+        "valenciano": {
+          "sessions": [
+            {
+              "num": 1,
+              "tipo": "sesion",
+              "titulo": "Sessió 1",
+              "subtitulo": "Casualitat o Do? La sorpresa davant la bellesa del cosmos i l'origen de la vida",
+              "slideNumber": 11
+            },
+            {
+              "num": 2,
+              "tipo": "sesion",
+              "titulo": "Sessió 2",
+              "subtitulo": "Custodis de la Terra: L'encíclica Laudato Si' i l'ecologia integral en la nostra vida diària",
+              "slideNumber": 14
+            },
+            {
+              "num": 99,
+              "tipo": "proyecto",
+              "titulo": "Projecte Final",
+              "subtitulo": "Campanya «Guardians de la Creació: El Nostre Institut Sostenible i Fratern»",
+              "slideNumber": 16
+            }
+          ],
+          "startSlide": 11
+        }
+      }
+    ]
+  },
+  {
+    "id": "2eso",
+    "nombre": "2º de ESO",
+    "etapa": "Educación Secundaria Obligatoria",
+    "orden": 2,
+    "color": "#ea580c",
+    "icon": "🕊️",
+    "totalTemas": 1,
+    "temas": [
+      {
+        "id": "2eso-tema-01",
+        "slug": "tema-01",
+        "numeroTema": 1,
+        "titulo": "Los Siete Sacramentos",
+        "rutaRelativa": "presentaciones/2eso/tema-01/slides.md",
+        "deckBase": "decks/2eso-tema-01/",
+        "deckUrl": "decks/2eso-tema-01/index.html",
+        "totalSlides": 19,
+        "separatorSlide": 10,
+        "castellano": {
+          "sessions": [
+            {
+              "num": 1,
+              "tipo": "sesion",
+              "titulo": "Sesión 1",
+              "subtitulo": "Materia, Signo y Gracia: ¿Qué es un Sacramento y cómo transforma nuestra existencia?",
+              "slideNumber": 1
+            },
+            {
+              "num": 2,
+              "tipo": "sesion",
+              "titulo": "Sesión 2",
+              "subtitulo": "Los Sacramentos en el Camino de la Vida: Iniciación, Curación y Servicio al Reino",
+              "slideNumber": 4
+            },
+            {
+              "num": 99,
+              "tipo": "proyecto",
+              "titulo": "Proyecto Final",
+              "subtitulo": "Guía Multimedia «Rutas del Signo Sagrado en Nuestra Comunidad»",
+              "slideNumber": 6
+            }
+          ],
+          "startSlide": 1
+        },
+        "valenciano": {
+          "sessions": [
+            {
+              "num": 1,
+              "tipo": "sesion",
+              "titulo": "Sessió 1",
+              "subtitulo": "Matèria, Signe i Gràcia: Què és un Sagrament i com transforma la nostra existència?",
+              "slideNumber": 11
+            },
+            {
+              "num": 2,
+              "tipo": "sesion",
+              "titulo": "Sessió 2",
+              "subtitulo": "Els Sagraments en el Camí de la Vida: Iniciació, Curació i Servici al Regne",
+              "slideNumber": 14
+            },
+            {
+              "num": 99,
+              "tipo": "proyecto",
+              "titulo": "Projecte Final",
+              "subtitulo": "Guia Multimèdia «Rutes del Signe Sagrat a la Nostra Comunitat»",
+              "slideNumber": 16
+            }
+          ],
+          "startSlide": 11
+        }
+      }
+    ]
+  },
+  {
+    "id": "3eso",
+    "nombre": "3º de ESO",
+    "etapa": "Educación Secundaria Obligatoria",
+    "orden": 3,
+    "color": "#c2410c",
+    "icon": "🤝",
+    "totalTemas": 1,
+    "temas": [
+      {
+        "id": "3eso-tema-01",
+        "slug": "tema-01",
+        "numeroTema": 1,
+        "titulo": "Dignidad Humana y Compromiso Social",
+        "rutaRelativa": "presentaciones/3eso/tema-01/slides.md",
+        "deckBase": "decks/3eso-tema-01/",
+        "deckUrl": "decks/3eso-tema-01/index.html",
+        "totalSlides": 19,
+        "separatorSlide": 10,
+        "castellano": {
+          "sessions": [
+            {
+              "num": 1,
+              "tipo": "sesion",
+              "titulo": "Sesión 1",
+              "subtitulo": "Creados a Imagen de Dios: El valor sagrado e inviolable de cada persona en la sociedad actual",
+              "slideNumber": 1
+            },
+            {
+              "num": 2,
+              "tipo": "sesion",
+              "titulo": "Sesión 2",
+              "subtitulo": "Las Bienaventuranzas en Acción: De la teoría a la transformación del entorno",
+              "slideNumber": 4
+            },
+            {
+              "num": 99,
+              "tipo": "proyecto",
+              "titulo": "Proyecto Final",
+              "subtitulo": "Podcast Escolar «Voces que Transforman: Cáritas, Voluntariado y Esperanza Real»",
+              "slideNumber": 6
+            }
+          ],
+          "startSlide": 1
+        },
+        "valenciano": {
+          "sessions": [
+            {
+              "num": 1,
+              "tipo": "sesion",
+              "titulo": "Sessió 1",
+              "subtitulo": "Creats a Imatge de Déu: El valor sagrat i inviolable de cada persona en la societat actual",
+              "slideNumber": 11
+            },
+            {
+              "num": 2,
+              "tipo": "sesion",
+              "titulo": "Sessió 2",
+              "subtitulo": "Les Benaurances en Acció: De la teoria a la transformació de l'entorn",
+              "slideNumber": 14
+            },
+            {
+              "num": 99,
+              "tipo": "proyecto",
+              "titulo": "Projecte Final",
+              "subtitulo": "Pòdcast Escolar «Veus que Transformen: Càritas, Voluntariat i Esperança Real»",
+              "slideNumber": 16
+            }
+          ],
+          "startSlide": 11
+        }
+      }
+    ]
+  },
+  {
+    "id": "4eso",
+    "nombre": "4º de ESO",
+    "etapa": "Educación Secundaria Obligatoria",
+    "orden": 4,
+    "color": "#9a3412",
+    "icon": "🔭",
+    "totalTemas": 1,
+    "temas": [
+      {
+        "id": "4eso-tema-01",
+        "slug": "tema-01",
+        "numeroTema": 1,
+        "titulo": "Fe y Razón: El Diálogo Contemporáneo",
+        "rutaRelativa": "presentaciones/4eso/tema-01/slides.md",
+        "deckBase": "decks/4eso-tema-01/",
+        "deckUrl": "decks/4eso-tema-01/index.html",
+        "totalSlides": 19,
+        "separatorSlide": 10,
+        "castellano": {
+          "sessions": [
+            {
+              "num": 1,
+              "tipo": "sesion",
+              "titulo": "Sesión 1",
+              "subtitulo": "Dos Alas hacia la Verdad: Superando el prejuicio del conflicto histórico entre fe y ciencia",
+              "slideNumber": 1
+            },
+            {
+              "num": 2,
+              "tipo": "sesion",
+              "titulo": "Sesión 2",
+              "subtitulo": "El Ajuste Fino del Cosmos y los Retos Éticos de la Inteligencia Artificial y la Bioética",
+              "slideNumber": 4
+            },
+            {
+              "num": 99,
+              "tipo": "proyecto",
+              "titulo": "Proyecto Final",
+              "subtitulo": "Torneo de Debate Académico «Ciencia, Ética y Trascendencia en el Siglo XXI»",
+              "slideNumber": 6
+            }
+          ],
+          "startSlide": 1
+        },
+        "valenciano": {
+          "sessions": [
+            {
+              "num": 1,
+              "tipo": "sesion",
+              "titulo": "Sessió 1",
+              "subtitulo": "Dues Ales cap a la Veritat: Superant el prejudici del conflicte històric entre fe i ciència",
+              "slideNumber": 11
+            },
+            {
+              "num": 2,
+              "tipo": "sesion",
+              "titulo": "Sessió 2",
+              "subtitulo": "L'Ajust Fin del Cosmos i els Reptes Ètics de la Intel·ligència Artificial i la Bioètica",
+              "slideNumber": 14
+            },
+            {
+              "num": 99,
+              "tipo": "proyecto",
+              "titulo": "Projecte Final",
+              "subtitulo": "Torneig de Debat Acadèmic «Ciència, Ètica i Transcendència en el Segle XXI»",
+              "slideNumber": 16
+            }
+          ],
+          "startSlide": 11
+        }
+      }
+    ]
+  },
+  {
+    "id": "1bach",
+    "nombre": "1º de Bachillerato",
+    "etapa": "Bachillerato",
+    "orden": 5,
+    "color": "#7c2d12",
+    "icon": "🏛️",
+    "totalTemas": 1,
+    "temas": [
+      {
+        "id": "1bach-tema-01",
+        "slug": "tema-01",
+        "numeroTema": 1,
+        "titulo": "El Sentido de la Existencia y el Mal",
+        "rutaRelativa": "presentaciones/1bach/tema-01/slides.md",
+        "deckBase": "decks/1bach-tema-01/",
+        "deckUrl": "decks/1bach-tema-01/index.html",
+        "totalSlides": 19,
+        "separatorSlide": 10,
+        "castellano": {
+          "sessions": [
+            {
+              "num": 1,
+              "tipo": "sesion",
+              "titulo": "Sesión 1",
+              "subtitulo": "La Búsqueda de Sentido y el Vacío Existencial: Viktor Frankl, la angustia contemporánea y la apertura al Absoluto",
+              "slideNumber": 1
+            },
+            {
+              "num": 2,
+              "tipo": "sesion",
+              "titulo": "Sesión 2",
+              "subtitulo": "El Escándalo del Mal y la Respuesta de la Cruz: Teodicea, libertad humana y compasión redentora",
+              "slideNumber": 4
+            },
+            {
+              "num": 99,
+              "tipo": "proyecto",
+              "titulo": "Proyecto Final",
+              "subtitulo": "Seminario Académico «Disertación Crítica: Respuestas Contemporáneas al Problema del Mal y del Sentido»",
+              "slideNumber": 6
+            }
+          ],
+          "startSlide": 1
+        },
+        "valenciano": {
+          "sessions": [
+            {
+              "num": 1,
+              "tipo": "sesion",
+              "titulo": "Sessió 1",
+              "subtitulo": "La Recerca de Sentit i el Buit Existencial: Viktor Frankl, l'angoixa contemporània i l'obertura a l'Absolut",
+              "slideNumber": 11
+            },
+            {
+              "num": 2,
+              "tipo": "sesion",
+              "titulo": "Sessió 2",
+              "subtitulo": "L'Escàndol del Mal i la Resposta de la Creu: Teodicea, llibertat humana i compassió redemptora",
+              "slideNumber": 14
+            },
+            {
+              "num": 99,
+              "tipo": "proyecto",
+              "titulo": "Projecte Final",
+              "subtitulo": "Seminari Acadèmic «Dissertació Crítica: Respostes Contemporànies al Problema del Mal i del Sentit»",
+              "slideNumber": 16
+            }
+          ],
+          "startSlide": 11
+        }
+      }
+    ]
+  }
+]

@@ -1,0 +1,19 @@
+{
+  "name": "presentaciones-religion-catolica",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Portal de presentaciones didácticas bilingües en Slidev para Educación Secundaria y Bachillerato",
+  "scripts": {
+    "postinstall": "node scripts/patch-slidev.mjs",
+    "scan": "node scripts/scan.mjs",
+    "build": "node scripts/build.mjs",
+    "dev": "node scripts/dev.mjs",
+    "patch": "node scripts/patch-slidev.mjs"
+  },
+  "dependencies": {
+    "@slidev/cli": "^53.0.0",
+    "@slidev/theme-default": "latest",
+    "@slidev/theme-seriph": "latest",
+    "vue": "^3.5.33"
+  }
+}
