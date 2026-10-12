@@ -192,18 +192,36 @@ export async function scanCurriculum() {
           const numTema = temaMatch ? parseInt(temaMatch[1], 10) : 1;
 
           const fileContent = fs.readFileSync(slidesFile, 'utf8');
-          const h1Match = fileContent.match(/<h1[^>]*>([\s\S]*?)<\/h1>/i);
-          let tituloH1 = h1Match ? h1Match[1].replace(/<[^>]+>/g, '').trim() : '';
-          if (!tituloH1) {
+
+          // Prioridad de detección de título:
+          // 1. YAML frontmatter title: "..."
+          const yamlTitleMatch = fileContent.match(/^title:\s*["']?([^"'\r\n]+)["']?/m);
+          let tituloTema = '';
+          if (yamlTitleMatch) {
+            tituloTema = yamlTitleMatch[1]
+              .replace(/\s*-\s*(?:Sesión\s*\d+|Sessió\s*\d+|\d+º\s*ESO|\d+º\s*Bachillerato).*$/i, '')
+              .trim();
+          }
+
+          // 2. Encabezado HTML <h1>
+          if (!tituloTema) {
+            const h1Match = fileContent.match(/<h1[^>]*>([\s\S]*?)<\/h1>/i);
+            if (h1Match) {
+              tituloTema = h1Match[1].replace(/<[^>]+>/g, '').trim();
+            }
+          }
+
+          // 3. Fallbacks: Encabezado Markdown # o nombre del archivo
+          if (!tituloTema) {
             const mdH1 = fileContent.match(/^#\s+(.+)$/m);
-            tituloH1 = mdH1 ? mdH1[1].trim() : item.slug.replace(/[-_]/g, ' ');
+            tituloTema = mdH1 ? mdH1[1].trim() : item.fileName.replace(/\.md$/i, '').replace(/[-_]/g, ' ');
           }
 
           temas.push({
             id: `${cursoConfig.id}-${temaSlug}`,
             slug: temaSlug,
             numeroTema: numTema,
-            titulo: tituloH1,
+            titulo: tituloTema,
             rutaRelativa: path.relative(process.cwd(), slidesFile),
             deckBase: `decks/${cursoConfig.id}-${temaSlug}/`,
             deckUrl: `decks/${cursoConfig.id}-${temaSlug}/index.html`,

@@ -39,7 +39,7 @@
     </div>
   </header>
 
-  <!-- Contenedor de temas -->
+  <!-- Contenedor principal -->
   <main class="main-content">
     <div id="loadingState" class="state-msg">
       <div class="spinner"></div>
@@ -49,9 +49,38 @@
       <p>No se encontraron presentaciones.</p>
     </div>
 
-    <div id="decksGrid" class="decks-grid">
-      <!-- Tarjetas compactas generadas dinámicamente -->
-    </div>
+    <!-- Vista de Inicio: Tarjetas de Cursos -->
+    <section id="coursesView" class="courses-section">
+      <div class="section-heading">
+        <h1 class="section-title">Cursos</h1>
+        <p class="section-subtitle">Selecciona un curso para acceder a sus unidades didácticas y presentaciones bilingües.</p>
+      </div>
+      <div id="coursesGrid" class="courses-grid">
+        <!-- Tarjetas generadas dinámicamente -->
+      </div>
+    </section>
+
+    <!-- Vista de Temas del Curso Seleccionado / Búsqueda -->
+    <section id="topicsView" class="topics-section" style="display: none;">
+      <div class="topics-header">
+        <button id="btnBackToCourses" class="btn-back" type="button">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+          <span>Volver a Cursos</span>
+        </button>
+        <div class="topics-header-info">
+          <span id="currentCourseIcon" class="current-course-icon">🕊️</span>
+          <h2 id="currentCourseTitle" class="current-course-title">2º de ESO</h2>
+          <span id="currentCourseCount" class="current-course-count">1 tema</span>
+        </div>
+      </div>
+
+      <div id="decksGrid" class="decks-grid">
+        <!-- Tarjetas compactas generadas dinámicamente -->
+      </div>
+    </section>
   </main>
 
   <!-- Modal de Proyección -->

@@ -1,7 +1,7 @@
 // Estado de la aplicación
 const state = {
   curriculum: [],
-  activeCourseId: 'all',
+  activeCourseId: null, // null = Vista de inicio de Cursos
   searchQuery: '',
   modalTheme: null,
   modalCourse: null,
@@ -11,7 +11,15 @@ const state = {
 
 // Elementos del DOM
 const courseTabsEl = document.getElementById('courseTabs');
+const coursesViewEl = document.getElementById('coursesView');
+const coursesGridEl = document.getElementById('coursesGrid');
+const topicsViewEl = document.getElementById('topicsView');
 const decksGridEl = document.getElementById('decksGrid');
+const btnBackToCoursesEl = document.getElementById('btnBackToCourses');
+const currentCourseIconEl = document.getElementById('currentCourseIcon');
+const currentCourseTitleEl = document.getElementById('currentCourseTitle');
+const currentCourseCountEl = document.getElementById('currentCourseCount');
+
 const searchInputEl = document.getElementById('searchInput');
 const clearSearchEl = document.getElementById('clearSearch');
 const loadingStateEl = document.getElementById('loadingState');
@@ -34,10 +42,10 @@ document.addEventListener('DOMContentLoaded', async () => {
   await loadCurriculum();
 });
 
-// Cargar catálogo
+// Cargar catálogo con prevención de caché
 async function loadCurriculum() {
   try {
-    const res = await fetch('data/curriculum.json');
+    const res = await fetch(`data/curriculum.json?t=${Date.now()}`, { cache: 'no-cache' });
     if (!res.ok) throw new Error('No se pudo cargar curriculum.json');
     state.curriculum = await res.json();
   } catch (err) {
@@ -46,16 +54,26 @@ async function loadCurriculum() {
   } finally {
     loadingStateEl.style.display = 'none';
     renderCourseTabs();
-    renderDecks();
+    updateView();
   }
 }
 
 function setupEventListeners() {
-  // Buscador discreto
+  // Volver a vista de cursos
+  btnBackToCoursesEl.addEventListener('click', () => {
+    selectCourse(null);
+  });
+
+  // Clic en el logo del encabezado vuelve a cursos
+  document.querySelector('.brand')?.addEventListener('click', () => {
+    selectCourse(null);
+  });
+
+  // Buscador
   searchInputEl.addEventListener('input', (e) => {
     state.searchQuery = e.target.value.trim().toLowerCase();
     clearSearchEl.style.display = state.searchQuery ? 'block' : 'none';
-    renderDecks();
+    updateView();
   });
 
   clearSearchEl.addEventListener('click', () => {
@@ -63,7 +81,7 @@ function setupEventListeners() {
     state.searchQuery = '';
     clearSearchEl.style.display = 'none';
     searchInputEl.focus();
-    renderDecks();
+    updateView();
   });
 
   // Idiomas en modal
@@ -84,11 +102,96 @@ function setupEventListeners() {
   });
 }
 
-// Renderizar tabs compactos
+// Seleccionar curso o volver a inicio
+function selectCourse(cursoId) {
+  state.activeCourseId = cursoId;
+  state.searchQuery = '';
+  searchInputEl.value = '';
+  clearSearchEl.style.display = 'none';
+  renderCourseTabs();
+  updateView();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// Actualizar la vista (Cursos o Temas)
+function updateView() {
+  emptyStateEl.style.display = 'none';
+
+  // Si hay búsqueda activa, mostrar resultados filtrados en topicsView
+  if (state.searchQuery) {
+    coursesViewEl.style.display = 'none';
+    topicsViewEl.style.display = 'block';
+    currentCourseIconEl.textContent = '🔍';
+    currentCourseTitleEl.textContent = `Búsqueda`;
+    btnBackToCoursesEl.style.display = 'inline-flex';
+    renderDecks();
+    return;
+  }
+
+  // Vista de inicio: Todas las tarjetas de Cursos
+  if (state.activeCourseId === null) {
+    topicsViewEl.style.display = 'none';
+    coursesViewEl.style.display = 'block';
+    renderCourses();
+    return;
+  }
+
+  // Vista de un Curso concreto
+  const curso = state.curriculum.find(c => c.id === state.activeCourseId);
+  if (curso) {
+    coursesViewEl.style.display = 'none';
+    topicsViewEl.style.display = 'block';
+    btnBackToCoursesEl.style.display = 'inline-flex';
+    currentCourseIconEl.textContent = curso.icon;
+    currentCourseTitleEl.textContent = curso.nombre;
+    const total = curso.temas.length;
+    currentCourseCountEl.textContent = `${total} presentación${total === 1 ? '' : 'es'}`;
+    renderDecks();
+  }
+}
+
+// Renderizar tarjetas de Cursos (Home)
+function renderCourses() {
+  coursesGridEl.innerHTML = '';
+
+  for (const curso of state.curriculum) {
+    const cardEl = document.createElement('div');
+    cardEl.className = 'course-card';
+    cardEl.style.setProperty('--course-color', curso.color || 'var(--primary)');
+
+    const count = curso.temas.length;
+    const badgeText = curso.id === '1bach' ? 'Bachillerato' : 'ESO';
+
+    cardEl.innerHTML = `
+      <div>
+        <div class="course-card-top">
+          <span class="course-card-icon">${curso.icon}</span>
+          <span class="course-card-badge">${badgeText}</span>
+        </div>
+        <h2 class="course-card-title">${curso.nombre}</h2>
+        <p class="course-card-stage">${curso.etapa}</p>
+      </div>
+      <div class="course-card-footer">
+        <span class="course-card-count">${count} tema${count === 1 ? '' : 's'} disponible${count === 1 ? '' : 's'}</span>
+        <span class="course-card-action">
+          <span>Ver temas</span>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </span>
+      </div>
+    `;
+
+    cardEl.addEventListener('click', () => selectCourse(curso.id));
+    coursesGridEl.appendChild(cardEl);
+  }
+}
+
+// Renderizar barra superior de tabs compactos
 function renderCourseTabs() {
   let html = `
-    <button class="course-tab-btn ${state.activeCourseId === 'all' ? 'active' : ''}" data-course="all">
-      Todos
+    <button class="course-tab-btn ${state.activeCourseId === null ? 'active' : ''}" data-course="home">
+      Cursos
     </button>
   `;
 
@@ -106,21 +209,19 @@ function renderCourseTabs() {
   const tabButtons = courseTabsEl.querySelectorAll('.course-tab-btn');
   tabButtons.forEach(btn => {
     btn.addEventListener('click', () => {
-      tabButtons.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      state.activeCourseId = btn.getAttribute('data-course');
-      renderDecks();
+      const courseId = btn.getAttribute('data-course');
+      selectCourse(courseId === 'home' ? null : courseId);
     });
   });
 }
 
-// Renderizar tarjetas de presentaciones compactas
+// Renderizar tarjetas de presentaciones de un curso o búsqueda
 function renderDecks() {
   decksGridEl.innerHTML = '';
   let matchCount = 0;
 
   for (const curso of state.curriculum) {
-    if (state.activeCourseId !== 'all' && state.activeCourseId !== curso.id) {
+    if (!state.searchQuery && state.activeCourseId && state.activeCourseId !== curso.id) {
       continue;
     }
 
@@ -137,6 +238,8 @@ function renderDecks() {
       const cardEl = document.createElement('div');
       cardEl.className = 'deck-card';
 
+      const sesionesCount = tema.castellano?.sessions?.length || 0;
+
       cardEl.innerHTML = `
         <div class="deck-header">
           <span class="deck-course-tag">${curso.nombre}</span>
@@ -145,11 +248,11 @@ function renderDecks() {
         <div class="deck-title">${tema.titulo}</div>
         <div class="deck-footer">
           <div class="deck-meta">
-            <span>${tema.castellano.sessions.length} sesiones</span>
+            <span>${sesionesCount} sesiones</span>
             <span>•</span>
             <span>AVL</span>
           </div>
-          <button class="btn-play">
+          <button class="btn-play" type="button">
             <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
               <polygon points="5 3 19 12 5 21 5 3"></polygon>
             </svg>
@@ -161,6 +264,10 @@ function renderDecks() {
       cardEl.addEventListener('click', () => openLaunchModal(curso, tema));
       decksGridEl.appendChild(cardEl);
     }
+  }
+
+  if (state.searchQuery) {
+    currentCourseCountEl.textContent = `${matchCount} resultado${matchCount === 1 ? '' : 's'}`;
   }
 
   emptyStateEl.style.display = matchCount === 0 ? 'block' : 'none';
@@ -240,9 +347,11 @@ function launchPresentation() {
   if (!tema) return;
 
   const slideNum = state.selectedSessionSlide;
-  const url = `${tema.deckBase}#${slideNum}`;
+  const baseUrl = window.location.href.split('#')[0].split('?')[0];
+  const normalizedBase = baseUrl.endsWith('/') ? baseUrl : baseUrl + '/';
+  const targetUrl = new URL(tema.deckBase, normalizedBase).href + '#' + slideNum;
 
-  window.open(url, '_blank');
+  window.open(targetUrl, '_blank');
   closeModal();
 }
 

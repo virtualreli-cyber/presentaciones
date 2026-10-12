@@ -86,7 +86,7 @@
         "id": "2eso-tema-01",
         "slug": "tema-01",
         "numeroTema": 1,
-        "titulo": "Materia, Signo y Gracia",
+        "titulo": "Los Siete Sacramentos",
         "rutaRelativa": "presentaciones/2eso/tema-01/P - 2E - CV - Sacramentos.md",
         "deckBase": "decks/2eso-tema-01/",
         "deckUrl": "decks/2eso-tema-01/index.html",
@@ -98,7 +98,7 @@
               "num": 1,
               "tipo": "sesion",
               "titulo": "Sesión 1",
-              "subtitulo": "¿Qué es un Sacramento? Signos sensibles de la presencia de Dios",
+              "subtitulo": "Materia, Signo y Gracia: ¿Qué es un Sacramento? Signos sensibles de la presencia de Dios",
               "slideNumber": 1
             }
           ],
@@ -110,7 +110,7 @@
               "num": 1,
               "tipo": "sesion",
               "titulo": "Sessió 1",
-              "subtitulo": "Què és un Sagrament? Signes sensibles de la presència de Déu",
+              "subtitulo": "Matèria, Signe i Gràcia: Què és un Sagrament? Signes sensibles de la presència de Déu",
               "slideNumber": 9
             }
           ],

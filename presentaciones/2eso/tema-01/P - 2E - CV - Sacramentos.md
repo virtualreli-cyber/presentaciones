@@ -30,13 +30,13 @@ ul > li::before, li::before {
 </div>
 <div class="my-auto">
 <h1 class="!text-5xl font-extrabold tracking-tight text-[#ea580c] mb-3">
-Materia, Signo y Gracia
+Los Siete Sacramentos
 </h1>
 <div class="text-xl font-bold text-slate-700 mb-2">
 Sesión 1
 </div>
 <p class="text-sm font-medium text-slate-500 max-w-xl mx-auto">
-¿Qué es un Sacramento? Signos sensibles de la presencia de Dios
+Materia, Signo y Gracia: ¿Qué es un Sacramento? Signos sensibles de la presencia de Dios
 </p>
 </div>
 <div class="flex items-center justify-center gap-3 opacity-30 pb-4">
@@ -444,13 +444,13 @@ Diapositiva de transició visual de llengua per a centres plurilingües.
 </div>
 <div class="my-auto">
 <h1 class="!text-5xl font-extrabold tracking-tight text-[#ea580c] mb-3">
-Matèria, Signe i Gràcia
+Els Set Sagraments
 </h1>
 <div class="text-xl font-bold text-slate-700 mb-2">
 Sessió 1
 </div>
 <p class="text-sm font-medium text-slate-500 max-w-xl mx-auto">
-Què és un Sagrament? Signes sensibles de la presència de Déu
+Matèria, Signe i Gràcia: Què és un Sagrament? Signes sensibles de la presència de Déu
 </p>
 </div>
 <div class="flex items-center justify-center gap-3 opacity-30 pb-4">
