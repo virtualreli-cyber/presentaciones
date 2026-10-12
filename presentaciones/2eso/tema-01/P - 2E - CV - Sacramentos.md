@@ -26,7 +26,7 @@ ul > li::before, li::before {
 <div class="flex flex-col justify-between h-full p-8 text-center bg-white">
 <div class="flex justify-between items-center text-xs font-semibold uppercase tracking-widest text-slate-400 pt-2">
 <span>Departamento de Religión Católica</span>
-<span class="px-3 py-1 text-xs font-bold uppercase tracking-wider text-amber-800 bg-amber-100 rounded-full">Unidad Didáctica · Los Siete Sacramentos</span>
+<span class="px-3 py-1 text-xs font-bold uppercase tracking-wider text-amber-800 bg-amber-100 rounded-full">Tema 2</span>
 </div>
 <div class="my-auto">
 <h1 class="!text-5xl font-extrabold tracking-tight text-[#ea580c] mb-3">

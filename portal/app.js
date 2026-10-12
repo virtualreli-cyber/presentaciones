@@ -348,8 +348,8 @@ function launchPresentation() {
 
   const slideNum = state.selectedSessionSlide;
   const baseUrl = window.location.href.split('#')[0].split('?')[0];
-  const normalizedBase = baseUrl.endsWith('/') ? baseUrl : baseUrl + '/';
-  const targetUrl = new URL(tema.deckBase, normalizedBase).href + '#' + slideNum;
+  const deckBaseUrl = new URL(tema.deckBase, normalizedBase).href;
+  const targetUrl = `${deckBaseUrl}?t=${Date.now()}#${slideNum}`;
 
   window.open(targetUrl, '_blank');
   closeModal();
