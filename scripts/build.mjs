@@ -32,10 +32,10 @@ fs.cpSync(path.resolve('portal'), distDir, { recursive: true });
 
 // 5. Localizar binario de slidev
 let slidevBin = 'npx slidev';
-if (fs.existsSync(path.resolve('Slidev/plantilla/node_modules/.bin/slidev'))) {
-  slidevBin = path.resolve('Slidev/plantilla/node_modules/.bin/slidev');
-} else if (fs.existsSync(path.resolve('node_modules/.bin/slidev'))) {
+if (fs.existsSync(path.resolve('node_modules/.bin/slidev'))) {
   slidevBin = path.resolve('node_modules/.bin/slidev');
+} else if (fs.existsSync(path.resolve('Slidev/plantilla/node_modules/.bin/slidev'))) {
+  slidevBin = path.resolve('Slidev/plantilla/node_modules/.bin/slidev');
 }
 
 // 6. Compilar cada deck

@@ -4,9 +4,29 @@ import { fileURLToPath } from 'node:url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-// Importar el parser de Slidev
-const parserPath = path.resolve('Slidev/plantilla/node_modules/@slidev/parser/dist/core.mjs');
-const { parse } = await import(parserPath);
+// Localizar el parser de Slidev de forma dinámica
+const possibleParserPaths = [
+  path.resolve('node_modules/@slidev/parser/dist/core.mjs'),
+  path.resolve('Slidev/plantilla/node_modules/@slidev/parser/dist/core.mjs')
+];
+
+let parseFunc = null;
+for (const p of possibleParserPaths) {
+  if (fs.existsSync(p)) {
+    const mod = await import(p);
+    parseFunc = mod.parse;
+    break;
+  }
+}
+
+if (!parseFunc) {
+  try {
+    const mod = await import('@slidev/parser');
+    parseFunc = mod.parse;
+  } catch (err) {
+    console.warn('[scan] @slidev/parser no disponible, usando analizador integrado.');
+  }
+}
 
 const CURSOS_CONFIG = [
   { id: '1eso', nombre: '1º de ESO', etapa: 'Educación Secundaria Obligatoria', orden: 1, color: '#f97316', icon: '🌱' },
@@ -16,9 +36,21 @@ const CURSOS_CONFIG = [
   { id: '1bach', nombre: '1º de Bachillerato', etapa: 'Bachillerato', orden: 5, color: '#7c2d12', icon: '🏛️' }
 ];
 
+function nativeParse(content) {
+  const norm = content.replace(/\r\n/g, '\n');
+  const rawParts = norm.split(/\n---\n/);
+  const slides = [];
+  for (let i = 0; i < rawParts.length; i++) {
+    const part = rawParts[i];
+    if (i === 0 && part.startsWith('---')) continue;
+    slides.push({ content: part });
+  }
+  return { slides };
+}
+
 export async function parseSlidesWithSlidev(filePath) {
   const content = fs.readFileSync(filePath, 'utf8');
-  const parsedDeck = await parse(content);
+  const parsedDeck = parseFunc ? await parseFunc(content) : nativeParse(content);
 
   const totalSlides = parsedDeck.slides.length;
   let separatorSlide = -1;
